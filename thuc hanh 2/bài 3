@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct {
+    char hoten[50];
+    char masv[20];
+    float diem1;
+    float diem2;
+    float diem3;
+} SinhVien;
+int main() {
+    int soluong;
+    printf("Nhap so luong sinh vien:");
+    scanf("%d", &soluong);
+    getchar();
+    SinhVien *danhsach = (SinhVien*)malloc(soluong * sizeof(SinhVien));
+    for (int chiso = 0; chiso < soluong; chiso++) {
+        printf("Nhap thong tin sinh vien %d:\n", chiso + 1);
+      
+        printf("Ho ten: ");
+        fgets((danhsach + chiso)->hoten, sizeof((danhsach + chiso)->hoten), stdin);
+        (danhsach + chiso)->hoten[strcspn((danhsach + chiso)->hoten, "\n")] = 0;
+        printf("Ma sinh vien: ");
+        fgets((danhsach + chiso)->masv, sizeof((danhsach + chiso)->masv), stdin);
+        (danhsach + chiso)->masv[strcspn((danhsach + chiso)->masv, "\n")] = 0;
+
+        printf("Nhap 3 diem: ");
+        scanf("%f %f %f", &(danhsach + chiso)->diem1, &(danhsach + chiso)->diem2, &(danhsach + chiso)->diem3);
+        getchar();
+    }
+    for (int chiso = 0;chiso < soluong; chiso++) {
+        printf("STT: %d  Ma: %s  Ho ten: %s  Diem: %.2f, %.2f, %.2f\n",
+               chiso + 1,
+               (danhsach + chiso)->masv,
+               (danhsach + chiso)->hoten,
+               (danhsach + chiso)->diem1,
+               (danhsach + chiso)->diem2,
+               (danhsach +chiso)->diem3);
+    }
+    free(danhsach);
+    return 0;
+}

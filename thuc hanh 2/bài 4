@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct SinhVien {
+    char hoten[50];
+    char masv[20];
+    float diem1;
+    float diem2;
+    float diem3;
+    struct SinhVien *tiep;
+};
+typedef struct SinhVien SV;
+
+SV *taosinhvien() {
+    SV *moi = (SV *)malloc(sizeof(SV));
+    printf("Nhap ho ten: ");
+    fgets(moi->hoten, sizeof(moi->hoten), stdin);
+    moi->hoten[strcspn(moi->hoten, "\n")] = 0;
+    printf("nhap ma sinh vien: ");
+
+
+    fgets(moi->masv, sizeof(moi->masv), stdin);
+    moi->masv[strcspn(moi->masv, "\n")] = 0;
+    printf("nhap 3 diem: ");
+    scanf("%f %f %f", &moi->diem1, &moi->diem2, &moi->diem3);
+    getchar();
+    moi->tiep = NULL;
+    return moi;
+}

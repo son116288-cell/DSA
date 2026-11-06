@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int sodong, socot;
+    printf("Nhap so dong: ");
+    scanf("%d",&sodong);
+    printf("Nhap so cot: ");
+    scanf("%d",&socot);
+    float **mang = (float **)malloc(sodong *sizeof(float *));
+    for (int dong = 0; dong< sodong;dong++) {
+        *(mang + dong)= (float *)malloc(socot *sizeof(float));
+    }
+    printf("Nhap cac phan tu:\n");
+    for (int dong =0; dong < sodong; dong++) {
+        for (int cot = 0; cot< socot; cot++) {
+            scanf("%f",*(mang + dong) + cot);
+        }
+    }
+    printf("Cac phan tu trong mang la:\n");
+    for (int dong = 0; dong < sodong;dong++) {
+        for (int cot = 0; cot < socot; cot++) {
+            printf("%.2f ", *(*(mang + dong) + cot));
+        }
+        printf("\n");
+    }
+    for (int dong = 0;dong < sodong; dong++) {
+        free(*(mang + dong));
+    }
+    free(mang);
+    return 0;
+}

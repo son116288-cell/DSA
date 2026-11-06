@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+int main(){
+	int n;
+	float *arr;
+	printf("nhap so phan tu trong mang:  ");
+	scanf("%d", &n);
+	if(n<=0){
+		printf(" du lieu nhap vao khoong hop le");
+		return 1;
+	}
+	arr = (float *)malloc(n* sizeof(float));
+
+	if(arr == NULL){
+		printf("khong con bo nho de cap phat");
+		return 1;
+	}
+
+	printf("\n nhap mang cua ban: \n");
+	for(int i=0; i<n ; i++){
+		printf(" nhap vao phan tu arr[%d]: ", i);
+		scanf(" %f" ,arr + i);
+	}
+
+	printf("\n cac phan tu trong mang gom: \n");
+	for(int i=0; i<n; i++){
+		printf("%.2f ", *(arr + i));
+	}
+	printf("\n");	
+	free(arr);
+	arr=NULL;
+}
